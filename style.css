@@ -123,14 +123,16 @@ body {
 .card-carousel {
   position: absolute;
   top: 30%;
-  left: 90.25%;
-  transform: translate(-50%, -50%);
+  left: 50%;
+  transform: translate(-10%, -50%);
   width: 100%;
   height: 100%;
   pointer-events: none;
-    z-index: 2; /* Reduce the z-index to place the text on top of the card carousel */
-
+  z-index: 2;
 }
+
+
+
 
 .centered-text-container {
   position: absolute;
