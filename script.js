@@ -231,50 +231,51 @@ function rotateBoat(boat) {
   
 
   function animate() {
-     frameCount++;
-  if (frameCount % updateDelay === 0) {
-    let boatPos = boat.position;
-    // Update boat position based on step
-    if (boatPos.x + boat.step < 75 && boatPos.x + boat.step > -75) {
-      boatPos.x += boat.step;
-    } else {
-      rotateBoat(boat);
+    frameCount++;
+    if (frameCount % updateDelay === 0) {
+      let boatPos = boat.position;
+      // Update boat position based on step
+      if (boatPos.x + boat.step < 75 && boatPos.x + boat.step > -75) {
+        boatPos.x += boat.step;
+      } else {
+        rotateBoat(boat);
+      }
+  
+      // Update boat's vertical position based on simplex noise
+      const floatHeight = 20; // Or whatever value keeps the boat above the wave
+      let waveHeight = simplex.noise2D(
+        boatPos.x / conf.xyCoef,
+        boatPos.z / conf.xyCoef
+      ) * conf.zCoef + plane.position.y - floatHeight;
+  
+      // Collision detection
+      if (boatPos.y < waveHeight) {
+        boatPos.y = waveHeight;
+      }
+      waveHeight*=.5;
+  
+      boat.position.y = waveHeight;
+  
+      // Calculate slope and set boat rotation
+      let x1 = boat.position.x;
+      let z1 = boat.position.z;
+      let y1 = simplex.noise2D(x1 / conf.xyCoef, z1 / conf.xyCoef) * conf.zCoef + plane.position.y;
+  
+      let x2 = x1 + 0.01;  // small step in x direction
+      let y2 = simplex.noise2D(x2 / conf.xyCoef, z1 / conf.xyCoef) * conf.zCoef + plane.position.y;
+  
+      let slope;
+  
+      if (boat.step < 0) { // moving right
+        slope = (y2 - y1) / (x2 - x1);
+      } else { // moving left
+        slope = -(y2 - y1) / (x2 - x1);  // flip the sign of the slope
+      }
+  
+      slope *= 0.5;
+  
+      boat.rotation.z = Math.atan(slope);
     }
-
-    // Update boat's vertical position based on simplex noise
-    const floatHeight = 2.7; // Or whatever value keeps the boat above the wave
-    let waveHeight = simplex.noise2D(
-      boatPos.x / conf.xyCoef,
-      boatPos.z / conf.xyCoef
-    ) * conf.zCoef + plane.position.y + floatHeight;
-
-    // Collision detection
-    if (boatPos.y < waveHeight) {
-      boatPos.y = waveHeight;
-    }
-
-    boat.position.y = waveHeight;
-
-    // Calculate slope and set boat rotation
-    let x1 = boat.position.x;
-    let z1 = boat.position.z;
-    let y1 = simplex.noise2D(x1 / conf.xyCoef, z1 / conf.xyCoef) * conf.zCoef + plane.position.y;
-
-    let x2 = x1 + 0.01;  // small step in x direction
-    let y2 = simplex.noise2D(x2 / conf.xyCoef, z1 / conf.xyCoef) * conf.zCoef + plane.position.y;
-
-    let slope;
-
-    if (boat.step < 0) { // moving right
-      slope = (y2 - y1) / (x2 - x1);
-    } else { // moving left
-      slope = -(y2 - y1) / (x2 - x1);  // flip the sign of the slope
-    }
-
-    slope *= 0.5;
-
-    boat.rotation.z = Math.atan(slope);
-  }
               
 
     animatePlane();
