@@ -140,7 +140,7 @@ var bow = new THREE.Mesh(bowGeometry, boatMaterial);
 bow.castShadow = true;
 bow.position.set(-boatWidth / 2, 0, 0);
 boat.add(bow);
-  boat.position.set(0, 0, 0);
+  boat.position.set(0, 0, 5);
       boat.step = -.15;
 boat.scale.set(0.175, 0.175, 0.175);
 
