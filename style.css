@@ -240,7 +240,7 @@ body {
   position: absolute;
     background-image: url("https://firebasestorage.googleapis.com/v0/b/feedyyy-bfff8.appspot.com/o/Images%20Files%2FS0iCR4S71CI4_1024_500.png?alt=media&token=9f264e49-3eba-45d0-947f-9a053d3dd282");
   background-size: contain;
-  background-size: 135% 100%;
+  background-size: 135% 102%;
   background-position: right 45% center ;
     background-repeat: no-repeat;
   z-index: 2;
@@ -270,7 +270,7 @@ body {
   position: absolute;
     background-image: url("https://firebasestorage.googleapis.com/v0/b/feedyyy-bfff8.appspot.com/o/Images%20Files%2FScreenshot%202023-05-03%20221406%20(1)%202_00000.png?alt=media&token=c3aca016-438f-437f-862d-2e00430f4cd5");
   background-size: contain;
-  background-size: 125% 100%;
+  background-size: 125% 102%;
   background-position: center right 50%;
     background-repeat: no-repeat;
   z-index: 2;
