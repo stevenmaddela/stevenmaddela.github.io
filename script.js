@@ -243,7 +243,7 @@ function rotateBoat(boat) {
       }
   
       // Update boat's vertical position based on simplex noise
-      const floatHeight = 23; // Or whatever value keeps the boat above the wave
+      const floatHeight = 55; // Or whatever value keeps the boat above the wave
       let waveHeight = simplex.noise2D(
         boatPos.x / conf.xyCoef,
         boatPos.z / conf.xyCoef
